@@ -1,38 +1,293 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-header {
+  background-color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  background: #07111f;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-wrapper {
   min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(0, 255, 170, 0.22), transparent 77%),
+    radial-gradient(circle at bottom right, rgba(0, 132, 255, 0.18), transparent 35%),
+    linear-gradient(135deg, #156315cb 10%, #325f38e1 44%, #101827 100%);
+  padding: 40px 0;
+}
+
+.dashboard-container {
+  max-width: 1180px;
+}
+
+.dashboard-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 36px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
 }
 
-.App-link {
-  color: #61dafb;
+.dashboard-header h1 {
+  margin: 14px 0 10px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.dashboard-header p {
+  margin: 0;
+  color: #a8b6c9;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+.status-badge {
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  padding: 8px 12px;
+}
+
+.summary-panel {
+  display: grid;
+  gap: 14px;
+  min-width: 230px;
+}
+
+.summary-panel div {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(4, 12, 24, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-panel span {
+  display: block;
+  color: #9fb0c6;
+  font-size: 0.88rem;
+  margin-bottom: 4px;
+}
+
+.summary-panel strong {
+  color: #4df5c1;
+  font-size: 1.45rem;
+}
+
+.iot-card {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.32);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.iot-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(77, 245, 193, 0.45);
+  box-shadow: 0 28px 75px rgba(0, 255, 170, 0.16);
+}
+
+.iot-card .card-body {
+  padding: 24px;
+}
+
+.card-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.device-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4df5c1;
+  box-shadow: 0 0 18px rgba(77, 245, 193, 0.9);
+}
+
+.device-status {
+  color: #4df5c1;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.iot-card .card-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.iot-card .card-text {
+  min-height: 110px;
+  color: #778291;
+  line-height: 1.6;
+}
+
+.metric-block {
+  margin: 22px 0;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #566172;
+}
+
+.metric-row strong {
+  color: #8a9127;
+}
+
+.efficiency-progress {
+  height: 9px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.13);
+}
+
+.efficiency-progress .progress-bar {
+  background: linear-gradient(90deg, #22e6a8, #85f838);
+}
+
+.energy-output {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(2, 8, 20, 0.5);
+}
+
+.energy-output span {
+  color: rgb(181, 202, 231);
+}
+
+.energy-output strong {
+  color: #ffd166;
+  font-size: 1.15rem;
+}
+
+.details-button {
+  width: 100%;
+  border-radius: 14px;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  to {
-    transform: rotate(360deg);
+
+  .dashboard-header h1 {
+    font-size: 2rem;
   }
+
+  .iot-card .card-text {
+    min-height: auto;
+  }
+}
+
+.iot-card {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.32);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.iot-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(77, 245, 193, 0.45);
+  box-shadow: 0 28px 75px rgba(0, 255, 170, 0.16);
+}
+
+.iot-card-selected {
+  border-color: rgba(77, 245, 193, 0.7);
+  box-shadow: 0 0 0 1px rgba(77, 245, 193, 0.2), 0 28px 75px rgba(0, 255, 170, 0.16);
+}
+
+.image-wrapper {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.device-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 7px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+}
+
+.iot-card .card-body {
+  padding: 24px;
+}
+
+.selection-counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(2, 8, 20, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.selection-counter span {
+  color: rgb(181, 202, 231);
+}
+
+.selection-counter strong {
+  color: #4df5c1;
+}
+
+.details-button {
+  width: 100%;
+  border-radius: 14px;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.summary-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  min-width: 320px;
 }
